@@ -1,7 +1,11 @@
 import tkinter as tk
 from tkinter import filedialog
+import tkinter
+import tkinter.messagebox
 import os
 from tkinter import *
+from peewee import *
+from model import *
 
 class EasyPayApp(tk.Tk):
 	"""The class is instantiated. This creates a toplevel 
@@ -194,10 +198,27 @@ class EasyPayApp(tk.Tk):
 		self.cancel1.place(x=750,y=480)
 		mainloop()
 
+	def execu(self):
+		self.firstname=self.e1.get()             #code
+		self.lastname=self.e2.get()              #to retrive 
+		self.email_id=self.e3.get()               #input data in entry boxes
+		self.phone_no=self.e4.get()
+		self.username=self.e5.get()
+		self.password=self.e6.get()
+		self.confirmpassinp=self.e7.get()
+		self.signup(self.firstname,self.lastname,self.email_id,self.phone_no,self.username,self.password)
+		self.new.destroy()
+		tkinter.messagebox.showinfo("Signup Successful","Please login again with your username and password")
+
 	def on_submit(self):
 		self.usernameinp = self.entry1.get() 
 		self.userpassword=self.entry2.get()
-		
+		self.check=self.login(self.usernameinp,self.userpassword)
+		if self.check==True:
+			self.option_call()
+		else:
+			tkinter.messagebox.showinfo("Signin Unsuccessful","Please login again with your valid username and password")
+	def option_call(self):
 		self.options=tk.Toplevel()
 		self.options.configure()
 		self.options.geometry("1366x768")
@@ -208,9 +229,9 @@ class EasyPayApp(tk.Tk):
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 		self.E.pack(expand=1)
 
-		self.card=tk.Button(self.options,text="Add NEW CARD",anchor=CENTER,cursor="hand1",font="times 16",command=self.addcard)
-		self.card.pack()
-		self.card.place(x=600,y=80)
+		self.card1=tk.Button(self.options,text="Add NEW CARD",anchor=CENTER,cursor="hand1",font="times 16",command=self.addcard)
+		self.card1.pack()
+		self.card1.place(x=600,y=80)
 
 		self.photo6 = PhotoImage(file="mobile.gif")
 		self.mobile=tk.Button(self.options,image=self.photo6,anchor=CENTER,height=220,width=220,bg="light blue",command=self.mobile_recharge)
@@ -288,15 +309,15 @@ class EasyPayApp(tk.Tk):
 
 		mainloop()
 
-	"""def on_submit_carddetails(self):
+	def on_submit_carddetails(self):
 		self.card_holder_name1=self.e8.get()
 		self.card_number1=self.e9.get()
 		self.expiry_month1=self.e10.get()
 		self.expiry_year1=self.e11.get()
 		self.cvv1=self.e12.get()
-		self.carddetails(self.card_holder_name1,self.card_number1,self.expiry_month1,self.expiry_year1,self.cvv1)
+		self.card(self.card_holder_name1,self.card_number1,self.expiry_month1,self.expiry_year1,self.cvv1)
 		self.add.destroy()
-"""
+
 	def mobile_recharge(self):
 		
 		"""
@@ -325,7 +346,7 @@ class EasyPayApp(tk.Tk):
 		pyautogui.typewrite(['enter'])
 
 		# Give a delay for about 20 seconds to open the mentioned webpage.
-		time.sleep(55)
+		time.sleep(10)
 
 		# Click on the coordinates of the last digit of the mobile number in the space provided to type the number. 
 		pyautogui.click(772,269)
@@ -335,7 +356,8 @@ class EasyPayApp(tk.Tk):
 			pyautogui.typewrite(['backspace'])
 
 		# Type the 'Mobile number' of the user in the erased space,followed by required amount of delay.
-		pyautogui.typewrite('9972549978',0.1)
+		numb1=self.ph(self.usernameinp)
+		pyautogui.typewrite(numb1,0.1)
 		time.sleep(10)
 
 		# Type the 'Amount of recharge' to be done, followed by required amount of delay.
@@ -349,14 +371,22 @@ class EasyPayApp(tk.Tk):
 
 		# Fill the 'Card details' consisting of Name on the card, Card Number, Expiry date and CVV in the respective space provided.  
 		pyautogui.click(100,475)
-		pyautogui.click(300,335); pyautogui.typewrite('PRAJWAL S',0.1)
-		pyautogui.click(300,430); pyautogui.typewrite('5089440016858525',0.1)
-		pyautogui.click(705,430); pyautogui.typewrite('01',0.1)
-		pyautogui.click(750,430); pyautogui.typewrite('22',0.1)
-		pyautogui.click(830,430); pyautogui.typewrite('247',0.1)
+		chn1=self.c_h_n()
+		time.sleep(1)
+		pyautogui.click(350,338); pyautogui.typewrite(chn1,0.1)
+		cn1=self.c_n()
+
+
+		pyautogui.click(300,430); pyautogui.typewrite(cn1,0.1)
+		expm2=self.expm()
+		pyautogui.click(705,430); pyautogui.typewrite(expm2,0.1)
+		expy2=self.expy()
+		pyautogui.click(750,430); pyautogui.typewrite(expy2,0.1)
+		cvv2=self.c_v_v()
+		pyautogui.click(830,430); pyautogui.typewrite(cvv2,0.1)
 
 		# Click on 'Continue to pay' option to receive an OTP to the associated number and to complete the payment.
-		#pyautogui.click(1000,600)
+		pyautogui.click(1000,600)
 
 	def dth_recharge(self):
 		import pyautogui,time
@@ -390,11 +420,18 @@ class EasyPayApp(tk.Tk):
 		pyautogui.click(805,465)
 		time.sleep(5)
 		pyautogui.click(620,445)
-		pyautogui.typewrite('5089440016858525',0.1)
-		pyautogui.click(620,479); pyautogui.typewrite('PRAJWAL S',0.1)
-		pyautogui.click(552,512); pyautogui.typewrite('01',0.1)
-		pyautogui.click(606,513); pyautogui.typewrite('2022',0.1)
-		pyautogui.click(550,550); pyautogui.typewrite('247',0.1)
+		cn1=self.c_n()
+		pyautogui.typewrite(cn1,0.1)
+		expm2=self.expm()
+		chn1=self.c_h_n()
+		pyautogui.click(620,479); pyautogui.typewrite(chn1,0.1)
+		pyautogui.click(552,512); pyautogui.typewrite(expm2,0.1)
+		expy2=self.expy()
+		expy3="20"+expy2
+		cvv2=self.c_v_v()
+		pyautogui.click(606,513); pyautogui.typewrite(expy3,0.1)
+
+		pyautogui.click(550,550); pyautogui.typewrite(cvv2,0.1)
 		pyautogui.click(373,634)
 
 	def wifi_recharge(self):
@@ -407,6 +444,89 @@ class EasyPayApp(tk.Tk):
 		pyautogui.press(['x'])
 		pyautogui.click(151,51)
 
+	def signup(self,f_firstname, f_lastname, f_email_id ,f_phone_no ,f_username ,f_password):
+		self.firstname = f_firstname
+		self.lastname = f_lastname
+		self.email_id = f_email_id
+		self.phone_no = f_phone_no
+		self.username = f_username
+		self.password = f_password
+		try:
+			Customer.create(first_name = self.firstname, last_name = self.lastname, email_id = self.email_id ,phone_number = self.phone_no, user_name = self.username, password = self.password)
+		except:
+			Customer.update(first_name = self.firstname, last_name = self.lastname, email_id = self.email_id ,phone_number = self.phone_no, user_name = self.username, password = self.password)
+	
+
+
+	def login(self,f_username, f_password):
+
+		self.username = f_username
+		self.password = f_password
+
+
+		try:
+			query1 = Customer.select().where(Customer.user_name == self.username)
+			
+			if ((self.password == query1[0].password) and (query1[0].user_name == self.username)):
+				print("loged In")
+				return True
+			else:
+				print("Invalid username or password")
+				return False
+
+		except:
+			print("user does not exist")
+			return False
+	def ph(self,f_username):
+		self.username = f_username
+
+		query2= Customer.select().where(Customer.user_name == self.username)
+		self.ph_no = query2[0].phone_number
+		return self.ph_no
+	
+
+	def card(self,f_card_holder,f_card_no,f_exp_month,f_exp_year,f_cvv):
+		self.card_holder_name1 = f_card_holder
+		self.card_number1 = f_card_no
+		self.expiry_month1 = f_exp_month
+		self.expiry_year1 = f_exp_year
+		self.cvv1 = f_cvv
+
+		
+		Card_details.create(card_holder_name = self.card_holder_name1, card_number = self.card_number1, expiry_month = self.expiry_month1 ,expiry_year = self.expiry_year1 , cvv = self.cvv1)
+
+	def c_h_n(self):
+
+		query3= Card_details.select().where(Card_details.customer==1)
+		self.chn = query3[0].card_holder_name
+		return self.chn
+	def c_n(self):
+
+		query4= Card_details.select().where(Card_details.customer==1)
+		self.cn = query4[0].card_number
+		return self.cn
+	def expm(self):
+
+		query5= Card_details.select().where(Card_details.customer==1)
+		self.expm1 = query5[0].expiry_month
+		return self.expm1
+	def expy(self):
+
+		query6= Card_details.select().where(Card_details.customer==1)
+		self.expy1 = query6[0].expiry_year
+		return self.expy1
+	def c_v_v(self):
+
+		query7= Card_details.select().where(Card_details.customer==1)
+		self.cvvn= query7[0].cvv
+		return self.cvvn
+
+
+
+
+
+
+		
 app = EasyPayApp()
 app.mainloop()
 
