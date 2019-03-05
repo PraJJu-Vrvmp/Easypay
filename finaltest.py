@@ -3,7 +3,6 @@ from tkinter import filedialog
 import os
 from tkinter import *
 
-
 class EasyPayApp(tk.Tk):
 	"""The class is instantiated. This creates a toplevel 
 	widget of Tk which usually is the main window of an application which is developed to automate the recursive things."""
@@ -79,7 +78,7 @@ class EasyPayApp(tk.Tk):
 
 	def on_signup(self):
 		"""This function describes the components required for the new window which appears after signup button is clicked.
-		 The title and geometry of the window is described. A canvas is created which is used to pack and place all other 
+		 The title and geometry of the window is described.A canvas is created which is used to pack and place all other 
 		 components of the window.
 
 		 A background image is set using PhotoImage attribute.
@@ -214,17 +213,17 @@ class EasyPayApp(tk.Tk):
 		self.card.place(x=600,y=80)
 
 		self.photo6 = PhotoImage(file="mobile.gif")
-		self.mobile=tk.Button(self.options,image=self.photo6,anchor=CENTER,height=220,width=220,bg="light blue",command=self.autopress)
+		self.mobile=tk.Button(self.options,image=self.photo6,anchor=CENTER,height=220,width=220,bg="light blue",command=self.mobile_recharge)
 		self.mobile.pack()
 		self.mobile.place(x=175,y=200)
 
 		self.photo7 = PhotoImage(file="d2h.gif")
-		self.d2h=tk.Button(self.options,image=self.photo7,anchor=CENTER,height=220,width=220,bg="light blue")
+		self.d2h=tk.Button(self.options,image=self.photo7,anchor=CENTER,height=220,width=220,bg="light blue",command=self.dth_recharge)
 		self.d2h.pack()
 		self.d2h.place(x=575,y=200)
 
 		self.photo8 = PhotoImage(file="wifi.gif")
-		self.wifi=tk.Button(self.options,image=self.photo8,anchor=CENTER,height=220,width=220,bg="light blue")
+		self.wifi=tk.Button(self.options,image=self.photo8,anchor=CENTER,height=220,width=220,bg="light blue",command=self.wifi_recharge)
 		self.wifi.pack()
 		self.wifi.place(x=975,y=200)
 
@@ -289,7 +288,7 @@ class EasyPayApp(tk.Tk):
 
 		mainloop()
 
-	def on_submit_carddetails(self):
+	"""def on_submit_carddetails(self):
 		self.card_holder_name1=self.e8.get()
 		self.card_number1=self.e9.get()
 		self.expiry_month1=self.e10.get()
@@ -297,8 +296,8 @@ class EasyPayApp(tk.Tk):
 		self.cvv1=self.e12.get()
 		self.carddetails(self.card_holder_name1,self.card_number1,self.expiry_month1,self.expiry_year1,self.cvv1)
 		self.add.destroy()
-
-	def autopress(self):
+"""
+	def mobile_recharge(self):
 		
 		"""
 		This function eliminates the need for mouse clicks and keypresses,
@@ -306,8 +305,8 @@ class EasyPayApp(tk.Tk):
 		"""
 
 		# Import the necessary libraries.
+		
 		import pyautogui,time
-
 		# Open 'Google Chrome' after the command from the user.
 		pyautogui.press('win')
 		pyautogui.typewrite('Google Chrome',0.1)
@@ -359,7 +358,54 @@ class EasyPayApp(tk.Tk):
 		# Click on 'Continue to pay' option to receive an OTP to the associated number and to complete the payment.
 		#pyautogui.click(1000,600)
 
+	def dth_recharge(self):
+		import pyautogui,time
+		pyautogui.press('win')
+		pyautogui.typewrite('Google Chrome',0.1)
+		pyautogui.typewrite(['enter'])
+		time.sleep(5)
+		pyautogui.hotkey('alt','space')
+		pyautogui.press(['x'])
+		pyautogui.click(151,51)
+		pyautogui.typewrite('https://www.tatasky.com/wps/portal/TataSky/help/recharge-online')
+		pyautogui.typewrite(['enter'])
+		time.sleep(10)
+		pyautogui.click(1119,120)
+		time.sleep(2)
+		pyautogui.press(['down'])
+		pyautogui.press(['down'])
+		pyautogui.click(720,470)
+		pyautogui.typewrite('9945990000',0.1)
+		pyautogui.click(618,592)
+		pyautogui.typewrite('3175',0.1)
+		time.sleep(2)
+		pyautogui.click(665,682)
+		time.sleep(10)
+		pyautogui.click(330,405)
+		pyautogui.click(1150,543)
+		time.sleep(10)
+		pyautogui.click(681,375)
+		pyautogui.click(959,413)
+		pyautogui.click(864,579)
+		pyautogui.click(805,465)
+		time.sleep(5)
+		pyautogui.click(620,445)
+		pyautogui.typewrite('5089440016858525',0.1)
+		pyautogui.click(620,479); pyautogui.typewrite('PRAJWAL S',0.1)
+		pyautogui.click(552,512); pyautogui.typewrite('01',0.1)
+		pyautogui.click(606,513); pyautogui.typewrite('2022',0.1)
+		pyautogui.click(550,550); pyautogui.typewrite('247',0.1)
+		pyautogui.click(373,634)
 
+	def wifi_recharge(self):
+		import pyautogui,time
+		pyautogui.press('win')
+		pyautogui.typewrite('Google Chrome',0.1)
+		pyautogui.typewrite(['enter'])
+		time.sleep(5)
+		pyautogui.hotkey('alt','space')
+		pyautogui.press(['x'])
+		pyautogui.click(151,51)
 
 app = EasyPayApp()
 app.mainloop()
