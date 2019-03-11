@@ -44,9 +44,9 @@ class Card_details(Model):
 	customer = ForeignKeyField(Customer, default = True)
 	card_holder_name = TextField()
 	card_number = TextField(unique = True)
-	expiry_month = IntegerField()
-	expiry_year = IntegerField()
-	cvv = IntegerField()
+	expiry_month = TextField()
+	expiry_year = TextField()
+	cvv = TextField()
 
 	class Meta:
 		database = db
