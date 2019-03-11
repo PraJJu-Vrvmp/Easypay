@@ -44,7 +44,7 @@ class EasyPayApp(tk.Tk):
 		
 		self.newuser=tk.Label(self,text="New user?",anchor=CENTER,font="sansserif 10")
 		self.register=tk.Button(self,text="Sign Up",cursor="hand1",fg="blue",activebackground="blue",bd=0,anchor=CENTER,font="sansserif 10",command=self.on_signup)
-		self.about=tk.Button(self,text="About EASYPAY",cursor="hand1",fg="red",bd=0,anchor=CENTER,activebackground="blue",font="sansserif 12")
+		self.about=tk.Button(self,text="About EASYPAY",cursor="hand1",fg="red",bd=0,anchor=CENTER,activebackground="blue",font="sansserif 12",command=self.aboutus)
 		
 		#Generating components on the window.
 		self.speckbit.pack()
@@ -199,9 +199,9 @@ class EasyPayApp(tk.Tk):
 		mainloop()
 
 	def execu(self):
-		self.firstname=self.e1.get()             #code
-		self.lastname=self.e2.get()              #to retrive 
-		self.email_id=self.e3.get()               #input data in entry boxes
+		self.firstname=self.e1.get()            
+		self.lastname=self.e2.get()              
+		self.email_id=self.e3.get()               
 		self.phone_no=self.e4.get()
 		self.username=self.e5.get()
 		self.password=self.e6.get()
@@ -218,20 +218,18 @@ class EasyPayApp(tk.Tk):
 			self.option_call()
 		else:
 			tkinter.messagebox.showinfo("Signin Unsuccessful","Please login again with your valid username and password")
+
 	def option_call(self):
 		self.options=tk.Toplevel()
 		self.options.configure()
-		self.options.geometry("1366x768")
+		self.options.geometry("1366x680")
 		self.options.title("OPTIONS")
+
 		self.E= tk.Canvas(self.options, bg="blue")
 		self.bgpic1=PhotoImage(file="backgrnd.gif")
 		self.background_label = tk.Label(self.options, image=self.bgpic1)
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 		self.E.pack(expand=1)
-
-		self.card1=tk.Button(self.options,text="Add NEW CARD",anchor=CENTER,cursor="hand1",font="times 16",command=self.addcard)
-		self.card1.pack()
-		self.card1.place(x=600,y=80)
 
 		self.photo6 = PhotoImage(file="mobile.gif")
 		self.mobile=tk.Button(self.options,image=self.photo6,anchor=CENTER,height=220,width=220,bg="light blue",command=self.mobile_recharge)
@@ -243,10 +241,10 @@ class EasyPayApp(tk.Tk):
 		self.d2h.pack()
 		self.d2h.place(x=575,y=200)
 
-		self.photo8 = PhotoImage(file="wifi.gif")
-		self.wifi=tk.Button(self.options,image=self.photo8,anchor=CENTER,height=220,width=220,bg="light blue",command=self.wifi_recharge)
-		self.wifi.pack()
-		self.wifi.place(x=975,y=200)
+		self.photo8 = PhotoImage(file="addcard.gif")
+		self.add_card=tk.Button(self.options,image=self.photo8,anchor=CENTER,height=220,width=220,padx=20,bg="light blue",command=self.addcard)
+		self.add_card.pack()
+		self.add_card.place(x=975,y=200)
 
 		mainloop()
 
@@ -308,6 +306,20 @@ class EasyPayApp(tk.Tk):
 
 
 		mainloop()
+
+	def aboutus(self):
+		self.about_us=tk.Toplevel()
+		self.about_us.configure()
+		self.about_us.geometry("860x525")
+		self.about_us.title("ABOUT US")
+
+
+		self.G= tk.Canvas(self.about_us, bg="blue")
+		self.bgpicabt=PhotoImage(file="aboutus.gif")
+		self.background_label = tk.Label(self.about_us, image=self.bgpicabt)
+		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+		self.G.pack(expand=1)
+
 
 	def on_submit_carddetails(self):
 		self.card_holder_name1=self.e8.get()
@@ -434,16 +446,7 @@ class EasyPayApp(tk.Tk):
 		pyautogui.click(550,550); pyautogui.typewrite(cvv2,0.1)
 		pyautogui.click(373,634)
 
-	def wifi_recharge(self):
-		import pyautogui,time
-		pyautogui.press('win')
-		pyautogui.typewrite('Google Chrome',0.1)
-		pyautogui.typewrite(['enter'])
-		time.sleep(5)
-		pyautogui.hotkey('alt','space')
-		pyautogui.press(['x'])
-		pyautogui.click(151,51)
-
+	
 	def signup(self,f_firstname, f_lastname, f_email_id ,f_phone_no ,f_username ,f_password):
 		self.firstname = f_firstname
 		self.lastname = f_lastname
@@ -468,18 +471,14 @@ class EasyPayApp(tk.Tk):
 			query1 = Customer.select().where(Customer.user_name == self.username)
 			
 			if ((self.password == query1[0].password) and (query1[0].user_name == self.username)):
-				print("loged In")
 				return True
 			else:
-				print("Invalid username or password")
 				return False
 
 		except:
-			print("user does not exist")
 			return False
 	def ph(self,f_username):
 		self.username = f_username
-
 		query2= Customer.select().where(Customer.user_name == self.username)
 		self.ph_no = query2[0].phone_number
 		return self.ph_no
@@ -491,45 +490,32 @@ class EasyPayApp(tk.Tk):
 		self.expiry_month1 = f_exp_month
 		self.expiry_year1 = f_exp_year
 		self.cvv1 = f_cvv
-
-		
 		Card_details.create(card_holder_name = self.card_holder_name1, card_number = self.card_number1, expiry_month = self.expiry_month1 ,expiry_year = self.expiry_year1 , cvv = self.cvv1)
 
 	def c_h_n(self):
-
 		query3= Card_details.select().where(Card_details.customer==1)
 		self.chn = query3[0].card_holder_name
 		return self.chn
+	
 	def c_n(self):
-
 		query4= Card_details.select().where(Card_details.customer==1)
 		self.cn = query4[0].card_number
 		return self.cn
+	
 	def expm(self):
-
 		query5= Card_details.select().where(Card_details.customer==1)
 		self.expm1 = query5[0].expiry_month
 		return self.expm1
+	
 	def expy(self):
-
 		query6= Card_details.select().where(Card_details.customer==1)
 		self.expy1 = query6[0].expiry_year
 		return self.expy1
-	def c_v_v(self):
 
+	def c_v_v(self):
 		query7= Card_details.select().where(Card_details.customer==1)
 		self.cvvn= query7[0].cvv
 		return self.cvvn
 
-
-
-
-
-
-		
 app = EasyPayApp()
 app.mainloop()
-
-
-
-
