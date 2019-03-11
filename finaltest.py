@@ -1,3 +1,7 @@
+"""Import the required modules and files for the program.
+Tkinter is used as a frontend module.
+Pyautogui is used for automation functions.
+PeeWee and model are used for using database"""
 import tkinter as tk
 from tkinter import filedialog
 import tkinter
@@ -31,19 +35,27 @@ class EasyPayApp(tk.Tk):
 
 		#Initializing required components like buttons,labels and entry boxes.
 		self.photo = PhotoImage(file="speckbit.gif")
-		self.speckbit = tk.Button(self, image=self.photo,anchor=CENTER,)
-	
+		self.speckbit = tk.Button(self, image=self.photo,anchor=CENTER)
+		
+		#Create an entry box and label it to get the username of the user.
 		self.entry1=tk.Entry(self,width=30)
-		
-		
 		self.usern=tk.Label(self,text="Username:",anchor=CENTER,font="sansserif 10")
+
+		#Create an entry box and label it to get the password of the user.
 		self.entry2=tk.Entry(self,width=30,show="*")
 		self.passw=tk.Label(self,text="Password:",anchor=CENTER,font="sansserif 10")
+
+		#Create a submit button which when clicked operates the function given in command.
 		self.submit=tk.Button(self,text="SUBMIT",cursor="hand1",activebackground="blue",font="times 10",anchor=CENTER,width=10,command=self.on_submit)
+
+		#Create a cancel button which when clicked closes the window.
 		self.cancel=tk.Button(self,text="CANCEL",cursor="hand1",anchor=CENTER,font="times 10",activebackground="blue",width=10)
 		
+		#Create a label for new user and a button which when clicked takes the user to signup page.
 		self.newuser=tk.Label(self,text="New user?",anchor=CENTER,font="sansserif 10")
 		self.register=tk.Button(self,text="Sign Up",cursor="hand1",fg="blue",activebackground="blue",bd=0,anchor=CENTER,font="sansserif 10",command=self.on_signup)
+
+		#Create an about button which when clicked takes user to a page which shows about the application.
 		self.about=tk.Button(self,text="About EASYPAY",cursor="hand1",fg="red",bd=0,anchor=CENTER,activebackground="blue",font="sansserif 12",command=self.aboutus)
 		
 		#Generating components on the window.
@@ -77,9 +89,6 @@ class EasyPayApp(tk.Tk):
 		self.about.pack()
 		self.about.place(x=1200,y=80)
 
-
-		
-
 	def on_signup(self):
 		"""This function describes the components required for the new window which appears after signup button is clicked.
 		 The title and geometry of the window is described.A canvas is created which is used to pack and place all other 
@@ -106,12 +115,13 @@ class EasyPayApp(tk.Tk):
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 		self.D.pack(expand=1)
 
-		#Initializing and generating required components like buttons,labels and entry boxes.
+		#Creating a label for signup picture.
 		self.photo1 = PhotoImage(file="signup.gif")
 		self.l=tk.Label(self.new,image=self.photo1,anchor=CENTER)
 		self.l.pack()
 		self.l.place(x=560,y=40)
 
+		#Create a label and entry box to get the first name of the user.
 		self.l1=tk.Label(self.new,text="First Name:",anchor=CENTER,font="times 14")
 		self.l1.pack()
 		self.l1.place(x=485,y=176)
@@ -120,11 +130,13 @@ class EasyPayApp(tk.Tk):
 		self.e1.pack()
 		self.e1.place(x=645,y=180)
 
+		#Creating a label for user picture.
 		self.photo2 = PhotoImage(file="user.gif")
 		self.b1=tk.Label(self.new,image=self.photo2,anchor=NW,bd=0)
 		self.b1.pack()
 		self.b1.place(x=125,y=125)
 
+		#Create a label and entry box to get the last name of the user.
 		self.l2=tk.Label(self.new,text="Last Name:",anchor=CENTER,font="times 14")
 		self.l2.pack()
 		self.l2.place(x=485,y=216)
@@ -133,11 +145,13 @@ class EasyPayApp(tk.Tk):
 		self.e2.pack()
 		self.e2.place(x=645,y=220)
 
+		#Creating a label for email picture.
 		self.photo3 = PhotoImage(file="email.gif")
 		self.b2=tk.Label(self.new,image=self.photo3,anchor=NW,bd=0)
 		self.b2.pack()
 		self.b2.place(x=160,y=400)
 
+		#Create a label and entry box to get the email id of the user.
 		self.l3=tk.Label(self.new,text="Email Id:",anchor=CENTER,font="times 14")
 		self.l3.pack()
 		self.l3.place(x=485,y=256)
@@ -146,12 +160,13 @@ class EasyPayApp(tk.Tk):
 		self.e3.pack()
 		self.e3.place(x=645,y=260)
 
+		#Creating a label for password picture.
 		self.photo4= PhotoImage(file="password.gif")
 		self.b3=tk.Label(self.new,image=self.photo4,anchor=NW,bd=0)
 		self.b3.pack()
 		self.b3.place(x=950,y=400)
 
-
+		#Create a label and entry box to get the phone no. of the user.
 		self.l4=tk.Label(self.new,text="Phone No.:",anchor=CENTER,font="times 14")
 		self.l4.pack()
 		self.l4.place(x=485,y=296)
@@ -160,11 +175,13 @@ class EasyPayApp(tk.Tk):
 		self.e4.pack()
 		self.e4.place(x=645,y=300)
 
+		#Creating a label for phone picture.
 		self.photo5 = PhotoImage(file="phone.gif")
 		self.b4=tk.Label(self.new,image=self.photo5,anchor=NW,bd=0)
 		self.b4.pack()
 		self.b4.place(x=900,y=150)
 
+		#Create a label and entry box to get the username of the user.
 		self.l5=tk.Label(self.new,text="Username:",anchor=CENTER,font="times 14")
 		self.l5.pack()
 		self.l5.place(x=485,y=336)
@@ -173,6 +190,7 @@ class EasyPayApp(tk.Tk):
 		self.e5.pack()
 		self.e5.place(x=645,y=340)
 
+		#Create a label and entry box to get the password of the user.
 		self.l6=tk.Label(self.new,text="Password:",anchor=CENTER,font="times 14")
 		self.l6.pack()
 		self.l6.place(x=485,y=376)
@@ -181,6 +199,7 @@ class EasyPayApp(tk.Tk):
 		self.e6.pack()
 		self.e6.place(x=645,y=380)
 
+		#Create a label and entry box to get the confirm password of the user.
 		self.l7=tk.Label(self.new,text="Confirm Password:",anchor=CENTER,font="times 14")
 		self.l7.pack()
 		self.l7.place(x=485,y=416)
@@ -189,16 +208,27 @@ class EasyPayApp(tk.Tk):
 		self.e7.pack()
 		self.e7.place(x=645,y=420)
 
+		#Create a submit button which when clicked operates the function given in command.
 		self.submit1=tk.Button(self.new,text="SUBMIT",anchor=CENTER,font="times 10",cursor="hand1",width=10,command=self.execu)
 		self.submit1.pack()
 		self.submit1.place(x=560,y=480)
 
+		#Create a cancel button which when clicked operates the function given in command.		
 		self.cancel1=tk.Button(self.new,text="CANCEL",anchor=CENTER,font="times 10",cursor="hand1",width=10,command=self.new.destroy)
 		self.cancel1.pack()
 		self.cancel1.place(x=750,y=480)
+
+		#This function runs the loop till the user manually closes it.
 		mainloop()
 
 	def execu(self):
+		"""This function is executed when the submit button on the signup page is pressed.
+		This function gets all the details entered in the entry boxes created in the signup page and passes all the details to a
+		funtion which adds all those details to the database.
+		Also the signup page is destroyed and it takes user back to main home page.
+		A message box is poped-up which gives a valid message to user."""
+
+		#The data entered in entry boxes is collected using get funtion and stored in respective variables.
 		self.firstname=self.e1.get()            
 		self.lastname=self.e2.get()              
 		self.email_id=self.e3.get()               
@@ -206,41 +236,71 @@ class EasyPayApp(tk.Tk):
 		self.username=self.e5.get()
 		self.password=self.e6.get()
 		self.confirmpassinp=self.e7.get()
+
+		#The data in the variables is passed to the function which updates the details in database.
 		self.signup(self.firstname,self.lastname,self.email_id,self.phone_no,self.username,self.password)
+
+		#This function destroys the signup page and takes the user to home page.
 		self.new.destroy()
+
+		#This function pops up a message box saying 'Signup successful'
 		tkinter.messagebox.showinfo("Signup Successful","Please login again with your username and password")
 
 	def on_submit(self):
+		"""This function is executed when the submit button is pressed in the home page.
+		This function first gets the details in the entryboxes and stores them in variables. 
+		those variables are passes to a funtion which verifies whether the user credentials are correct or not.
+		If the credential are correct then the user is taken to next options page if not a popup is given with valid message."""
+
+		#The details in the username and password entry boxes are stored in respective variables.
 		self.usernameinp = self.entry1.get() 
 		self.userpassword=self.entry2.get()
+
+		#The variables are passed to function which verifies credentials whose return value is stored in a variable.
 		self.check=self.login(self.usernameinp,self.userpassword)
+
+		#If the return value of variable is true then options page is displayed if not popup message is displayed saying 'Signin unsuccessful'.
 		if self.check==True:
 			self.option_call()
 		else:
 			tkinter.messagebox.showinfo("Signin Unsuccessful","Please login again with your valid username and password")
 
 	def option_call(self):
+		"""This function is executed when the signin is successful.
+		It creates a new window which shows the options for the user.
+		Add new card is used to add new card of the user, Mobile recharge is used to proceed to mobile recharge and d2h recharge
+		is used to proceed to d2h recharge."""
+
+		#Creating new window
 		self.options=tk.Toplevel()
 		self.options.configure()
+
+		#Shape of the window.
 		self.options.geometry("1366x680")
+
+		#Title of the window.
 		self.options.title("OPTIONS")
 
+		#Creating canvas for the window.
 		self.E= tk.Canvas(self.options, bg="blue")
 		self.bgpic1=PhotoImage(file="backgrnd.gif")
 		self.background_label = tk.Label(self.options, image=self.bgpic1)
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 		self.E.pack(expand=1)
 
+		#Create a button for mobile recharge with a picture on it which operates mobile recharge function when clicked on it.
 		self.photo6 = PhotoImage(file="mobile.gif")
 		self.mobile=tk.Button(self.options,image=self.photo6,anchor=CENTER,height=220,width=220,bg="light blue",command=self.mobile_recharge)
 		self.mobile.pack()
 		self.mobile.place(x=175,y=200)
 
+		#Create a button for d2h recharge with a picture on it which operates d2h recharge function when clicked on it.
 		self.photo7 = PhotoImage(file="d2h.gif")
 		self.d2h=tk.Button(self.options,image=self.photo7,anchor=CENTER,height=220,width=220,bg="light blue",command=self.dth_recharge)
 		self.d2h.pack()
 		self.d2h.place(x=575,y=200)
 
+		#Create a button for add card function with a picture on it which operates add card function when clicked on it.
 		self.photo8 = PhotoImage(file="addcard.gif")
 		self.add_card=tk.Button(self.options,image=self.photo8,anchor=CENTER,height=220,width=220,padx=20,bg="light blue",command=self.addcard)
 		self.add_card.pack()
@@ -249,22 +309,32 @@ class EasyPayApp(tk.Tk):
 		mainloop()
 
 	def addcard(self):
+		"""This function is executed when add card button is pressed in options page.
+		This function is used to get card details of the user like card holder name, card number, expiry month, expiry year and cvv"""
+
+		#Creating new window
 		self.add=tk.Toplevel()
 		self.add.configure()
+
+		#Shape of the window.
 		self.add.geometry("470x300")
+
+		#Title of the window.
 		self.add.title("ADD CARD")
 
-
+		#Creating canvas for the window.
 		self.F= tk.Canvas(self.add, bg="blue")
 		self.bgpic=PhotoImage(file="backgrnd.gif")
 		self.background_label = tk.Label(self.add, image=self.bgpic)
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 		self.F.pack(expand=1)
 
+		#Creating a label for card details.
 		self.details=tk.Label(self.add,text="CARD DETAILS",anchor=CENTER,font="times 18")
 		self.details.pack()
 		self.details.place(x=150,y=20)
 
+		#Create a label and entry box to get the name of the card holder.
 		self.name=tk.Label(self.add,text="NAME OF CARD HOLDER:",anchor=CENTER,font="times 12")
 		self.name.pack()
 		self.name.place(x=30,y=70)
@@ -272,6 +342,7 @@ class EasyPayApp(tk.Tk):
 		self.e8.pack()
 		self.e8.place(x=230,y=72)
 
+		#Create a label and entry box to get the card number.
 		self.number=tk.Label(self.add,text="CARD NUMBER:",anchor=CENTER,font="times 12")
 		self.number.pack()
 		self.number.place(x=30,y=100)
@@ -279,6 +350,7 @@ class EasyPayApp(tk.Tk):
 		self.e9.pack()
 		self.e9.place(x=230,y=102)
 
+		#Create a label and entry box to get the expiry month of the card.
 		self.expmonth=tk.Label(self.add,text="EXPIRY MONTH:",anchor=CENTER,font="times 12")
 		self.expmonth.pack()
 		self.expmonth.place(x=30,y=130)
@@ -286,6 +358,7 @@ class EasyPayApp(tk.Tk):
 		self.e10.pack()
 		self.e10.place(x=230,y=132)
 
+		#Create a label and entry box to get the expiry year of the card.
 		self.expyear=tk.Label(self.add,text="EXPIRY YEAR:",anchor=CENTER,font="times 12")
 		self.expyear.pack()
 		self.expyear.place(x=30,y=160)
@@ -293,6 +366,7 @@ class EasyPayApp(tk.Tk):
 		self.e11.pack()
 		self.e11.place(x=230,y=162)
 
+		#Create a label and entry box to get the CVV of the card.
 		self.cvv=tk.Label(self.add,text="CVV:",anchor=CENTER,font="times 12")
 		self.cvv.pack()
 		self.cvv.place(x=30,y=190)
@@ -300,20 +374,28 @@ class EasyPayApp(tk.Tk):
 		self.e12.pack()
 		self.e12.place(x=230,y=192)
 
+		#Create a submit button which when clicked operates the function given in command.
 		self.submit2=tk.Button(self.add,text="SUBMIT",anchor=CENTER,font="times 12",cursor="hand1",width=10,command=self.on_submit_carddetails)
 		self.submit2.pack()
 		self.submit2.place(x=190,y=230)
 
-
 		mainloop()
 
 	def aboutus(self):
+		"""This function is executed when about us button is pressed on the home page.
+		Some information about the application is displayed when executed."""
+
+		#Creating new window
 		self.about_us=tk.Toplevel()
 		self.about_us.configure()
+
+		#Shape of the window
 		self.about_us.geometry("860x525")
+
+		#Title of the window.
 		self.about_us.title("ABOUT US")
 
-
+		#Creating canvas for the window.
 		self.G= tk.Canvas(self.about_us, bg="blue")
 		self.bgpicabt=PhotoImage(file="aboutus.gif")
 		self.background_label = tk.Label(self.about_us, image=self.bgpicabt)
@@ -322,12 +404,21 @@ class EasyPayApp(tk.Tk):
 
 
 	def on_submit_carddetails(self):
+		"""This function is executed when the submit button on the add card page is pressed.
+		This function gets all the details entered in the entry boxes created in the add card page and passes all the details to a
+		funtion which adds all those details to the database."""
+
+		#The data entered in entry boxes is collected using get funtion and stored in respective variables.
 		self.card_holder_name1=self.e8.get()
 		self.card_number1=self.e9.get()
 		self.expiry_month1=self.e10.get()
 		self.expiry_year1=self.e11.get()
 		self.cvv1=self.e12.get()
+
+		#The data in the variables is passed to the function which updates the details in database.
 		self.card(self.card_holder_name1,self.card_number1,self.expiry_month1,self.expiry_year1,self.cvv1)
+
+		#This function destroys the add card page and takes the user to options page.
 		self.add.destroy()
 
 	def mobile_recharge(self):
