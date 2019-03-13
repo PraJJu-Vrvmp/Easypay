@@ -9,6 +9,7 @@ import tkinter.messagebox
 import os
 from tkinter import *
 from peewee import *
+# Importing the models customer and card_details from the model.py module
 from model import *
 
 class EasyPayApp(tk.Tk):
@@ -588,30 +589,38 @@ class EasyPayApp(tk.Tk):
 		# Click on final 'Pay Now' option to proceed to enter the OTP received.
 		pyautogui.click(373,634)
 
-	
+
+	# This function is used for signing up of the user to the easy_pay database
 	def signup(self,f_firstname, f_lastname, f_email_id ,f_phone_no ,f_username ,f_password):
+		# The arguments are taken into variables such as firstname, lastname, email id ,phone number,username and password for future use
 		self.firstname = f_firstname
 		self.lastname = f_lastname
 		self.email_id = f_email_id
 		self.phone_no = f_phone_no
 		self.username = f_username
 		self.password = f_password
+		''' In the following part of code of this function, we use try block to create a row in database or if it 
+    	 already exists then except block is used to update the row'''
+    	print("Created New Sign Up")
 		try:
+			print("creating")
 			Customer.create(first_name = self.firstname, last_name = self.lastname, email_id = self.email_id ,phone_number = self.phone_no, user_name = self.username, password = self.password)
 		except:
+			print("updating")
 			Customer.update(first_name = self.firstname, last_name = self.lastname, email_id = self.email_id ,phone_number = self.phone_no, user_name = self.username, password = self.password)
-	
+		print("updated to db")
 
 
+	# This function is used to login to easypay
 	def login(self,f_username, f_password):
-
+		# passing arguments into respective variables for future use
 		self.username = f_username
 		self.password = f_password
 
-
 		try:
+			# query1 is the variable which selects the username column's values
 			query1 = Customer.select().where(Customer.user_name == self.username)
-			
+			# now to check the password and username that has been passed to the function is same as the username and password that is present in the database
 			if ((self.password == query1[0].password) and (query1[0].user_name == self.username)):
 				return True
 			else:
@@ -619,44 +628,72 @@ class EasyPayApp(tk.Tk):
 
 		except:
 			return False
+
+
+	# This function is used to retrieve phone number from the customer table of database
 	def ph(self,f_username):
 		self.username = f_username
+		# By taking usernsme as reference to get the phone number of the customer from customer table 
 		query2= Customer.select().where(Customer.user_name == self.username)
 		self.ph_no = query2[0].phone_number
+		# Returning the phone number
 		return self.ph_no
 	
-
+	
+	# This function is used to add the card details to the card details table of the database
 	def card(self,f_card_holder,f_card_no,f_exp_month,f_exp_year,f_cvv):
+		# passing arguments into respective variables for future use
 		self.card_holder_name1 = f_card_holder
 		self.card_number1 = f_card_no
 		self.expiry_month1 = f_exp_month
 		self.expiry_year1 = f_exp_year
 		self.cvv1 = f_cvv
+		# Adding the card details of the customer
 		Card_details.create(card_holder_name = self.card_holder_name1, card_number = self.card_number1, expiry_month = self.expiry_month1 ,expiry_year = self.expiry_year1 , cvv = self.cvv1)
 
+
+	# This function is used to retrieve the card holder name from database 
 	def c_h_n(self):
+		# The following query searches for the card holder name in the card details table
 		query3= Card_details.select().where(Card_details.customer==1)
 		self.chn = query3[0].card_holder_name
+		# Returning the card holder name 
 		return self.chn
 	
+
+	# This function is used to retrieve the card number from the database 
 	def c_n(self):
+		# The following query searches for the card number in the card details table
 		query4= Card_details.select().where(Card_details.customer==1)
 		self.cn = query4[0].card_number
+		# Returning the card number
 		return self.cn
 	
+
+	# This function is used to retrieve the expiry month of the card from the database 
 	def expm(self):
+		# The following query searches for the expiry month in the card details table
 		query5= Card_details.select().where(Card_details.customer==1)
 		self.expm1 = query5[0].expiry_month
+		# Returning the card expiry month
 		return self.expm1
 	
+
+	# This function is used to retrieve the expiry year of the card from the database 
 	def expy(self):
+		# The following query searches for the expiry year in the card details table
 		query6= Card_details.select().where(Card_details.customer==1)
 		self.expy1 = query6[0].expiry_year
+		# Returning the card expiry year
 		return self.expy1
 
+
+	# This function is used to retrieve the cvv of the card from the database 
 	def c_v_v(self):
+		# The following query searches for the cvv in the card details table
 		query7= Card_details.select().where(Card_details.customer==1)
 		self.cvvn= query7[0].cvv
+		# Returning the cvv
 		return self.cvvn
 
 app = EasyPayApp()
