@@ -8,7 +8,7 @@ Click on Signup, then a new signup window appears, fill the required details and
 User needs to login in the home page with valid credentials and a new options window will apper. User needs to add their card details for first time usage by clicking on add card, fill all the deatils and press submit.
 Then user needs to choose either mobile recharge or d2h recharge.After choosing the option user doesnt need to do any work, pyautogui proceeds the work till the user gets OTP on their mobile. 
 If the user is already registered the data is retrieved from the database and used for recharge process. About us option on homepage displays about the easypay application in new window.
-
+Database can be viewed by opening easypay.db file.
 ## Running the application
 Pre-requisites to run the application:
 In command prompt,
