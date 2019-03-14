@@ -19,5 +19,6 @@ pip install pyautogui
 
 pip install peewee
 
-In a new folder, pull all the files in the repository and run(double click) the batchfile.bat
+In a new folder, pull all the files in the repository and run the batchfile.bat
+
 Carry out the process explained above.
