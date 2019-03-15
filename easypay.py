@@ -34,60 +34,52 @@ class EasyPayApp(tk.Tk):
 
 		#Initializing required components like buttons,labels and entry boxes.
 		self.photo = PhotoImage(file="speckbit.gif")
-		self.speckbit = tk.Button(self, image=self.photo,anchor=CENTER)
+		self.speckbit = tk.Label(self, image=self.photo,anchor=CENTER)
+		self.speckbit.pack()
+		self.speckbit.place(x=30,y=80)
 		
 		#Create an entry box and label it to get the username of the user.
 		self.entry1=tk.Entry(self,width=30)
-		self.usern=tk.Label(self,text="Username:",anchor=CENTER,font="sansserif 10")
-
-		#Create an entry box and label it to get the password of the user.
-		self.entry2=tk.Entry(self,width=30,show="*")
-		self.passw=tk.Label(self,text="Password:",anchor=CENTER,font="sansserif 10")
-
-		#Create a submit button which when clicked operates the function given in command.
-		self.submit=tk.Button(self,text="SUBMIT",cursor="hand1",activebackground="blue",font="times 10",anchor=CENTER,width=10,command=self.on_submit)
-
-		#Create a cancel button which when clicked closes the window.
-		self.cancel=tk.Button(self,text="CANCEL",cursor="hand1",anchor=CENTER,font="times 10",activebackground="blue",width=10)
-		
-		#Create a label for new user and a button which when clicked takes the user to signup page.
-		self.newuser=tk.Label(self,text="New user?",anchor=CENTER,font="sansserif 10")
-		self.register=tk.Button(self,text="Sign Up",cursor="hand1",fg="blue",activebackground="blue",bd=0,anchor=CENTER,font="sansserif 10",command=self.on_signup)
-
-		#Create an about button which when clicked takes user to a page which shows about the application.
-		self.about=tk.Button(self,text="About EASYPAY",cursor="hand1",fg="red",bd=0,anchor=CENTER,activebackground="blue",font="sansserif 12",command=self.aboutus)
-		
-		#Generating components on the window.
-		self.speckbit.pack()
-		self.speckbit.place(x=30,y=80)
-
 		self.entry1.pack()
 		self.entry1.place(x=600,y=300)
 
+		self.usern=tk.Label(self,text="Username:",anchor=CENTER,font="sansserif 10")
 		self.usern.pack()
 		self.usern.place(x=523,y=297)
 
+		#Create an entry box and label it to get the password of the user.
+		self.entry2=tk.Entry(self,width=30,show="*")
 		self.entry2.pack()
 		self.entry2.place(x=600,y=340)
 
+		self.passw=tk.Label(self,text="Password:",anchor=CENTER,font="sansserif 10")
 		self.passw.pack()
 		self.passw.place(x=523,y=338)
 
+		#Create a submit button which when clicked operates the function given in command.
+		self.submit=tk.Button(self,text="SUBMIT",cursor="hand1",activebackground="blue",font="times 10",anchor=CENTER,width=10,command=self.on_submit)
 		self.submit.pack()
 		self.submit.place(x=590,y=380)
 
+		#Create a cancel button which when clicked closes the window.
+		self.cancel=tk.Button(self,text="CANCEL",cursor="hand1",anchor=CENTER,font="times 10",activebackground="blue",width=10)
 		self.cancel.pack()
 		self.cancel.place(x=688,y=380)
-		
+
+		#Create a label for new user and a button which when clicked takes the user to signup page.
+		self.newuser=tk.Label(self,text="New user?",anchor=CENTER,font="sansserif 10")
 		self.newuser.pack()
 		self.newuser.place(x=620,y=425)
 
+		self.register=tk.Button(self,text="Sign Up",cursor="hand1",fg="blue",activebackground="blue",bd=0,anchor=CENTER,font="sansserif 10",command=self.on_signup)
 		self.register.pack()
 		self.register.place(x=685,y=423)
 
+		#Create an about button which when clicked takes user to a page which shows about the application.
+		self.about=tk.Button(self,text="About EASYPAY",cursor="hand1",fg="red",bd=0,anchor=CENTER,activebackground="blue",font="sansserif 12",command=self.aboutus)
 		self.about.pack()
 		self.about.place(x=1200,y=80)
-
+		
 	def on_signup(self):
 		"""This function describes the components required for the new window which appears after signup button is clicked.
 		 The title and geometry of the window is described.A canvas is created which is used to pack and place all other 
@@ -112,13 +104,37 @@ class EasyPayApp(tk.Tk):
 		self.bgpic=PhotoImage(file="backgrnd.gif")
 		self.background_label = tk.Label(self.new, image=self.bgpic)
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
-		self.D.pack(expand=1)
+		self.D.pack()
 
 		#Creating a label for signup picture.
 		self.photo1 = PhotoImage(file="signup.gif")
 		self.l=tk.Label(self.new,image=self.photo1,anchor=CENTER)
 		self.l.pack()
 		self.l.place(x=560,y=40)
+
+		#Creating a label for user picture.
+		self.photo2 = PhotoImage(file="user.gif")
+		self.b1=tk.Label(self.new,image=self.photo2,anchor=NW,bd=0)
+		self.b1.pack()
+		self.b1.place(x=125,y=125)
+
+		#Creating a label for email picture.
+		self.photo3 = PhotoImage(file="email.gif")
+		self.b2=tk.Label(self.new,image=self.photo3,anchor=NW,bd=0)
+		self.b2.pack()
+		self.b2.place(x=160,y=400)
+
+		#Creating a label for password picture.
+		self.photo4= PhotoImage(file="password.gif")
+		self.b3=tk.Label(self.new,image=self.photo4,anchor=NW,bd=0)
+		self.b3.pack()
+		self.b3.place(x=950,y=400)
+
+		#Creating a label for phone picture.
+		self.photo5 = PhotoImage(file="phone.gif")
+		self.b4=tk.Label(self.new,image=self.photo5,anchor=NW,bd=0)
+		self.b4.pack()
+		self.b4.place(x=900,y=150)
 
 		#Create a label and entry box to get the first name of the user.
 		self.l1=tk.Label(self.new,text="First Name:",anchor=CENTER,font="times 14")
@@ -129,12 +145,6 @@ class EasyPayApp(tk.Tk):
 		self.e1.pack()
 		self.e1.place(x=645,y=180)
 
-		#Creating a label for user picture.
-		self.photo2 = PhotoImage(file="user.gif")
-		self.b1=tk.Label(self.new,image=self.photo2,anchor=NW,bd=0)
-		self.b1.pack()
-		self.b1.place(x=125,y=125)
-
 		#Create a label and entry box to get the last name of the user.
 		self.l2=tk.Label(self.new,text="Last Name:",anchor=CENTER,font="times 14")
 		self.l2.pack()
@@ -143,12 +153,6 @@ class EasyPayApp(tk.Tk):
 		self.e2=tk.Entry(self.new,width=35)
 		self.e2.pack()
 		self.e2.place(x=645,y=220)
-
-		#Creating a label for email picture.
-		self.photo3 = PhotoImage(file="email.gif")
-		self.b2=tk.Label(self.new,image=self.photo3,anchor=NW,bd=0)
-		self.b2.pack()
-		self.b2.place(x=160,y=400)
 
 		#Create a label and entry box to get the email id of the user.
 		self.l3=tk.Label(self.new,text="Email Id:",anchor=CENTER,font="times 14")
@@ -159,12 +163,6 @@ class EasyPayApp(tk.Tk):
 		self.e3.pack()
 		self.e3.place(x=645,y=260)
 
-		#Creating a label for password picture.
-		self.photo4= PhotoImage(file="password.gif")
-		self.b3=tk.Label(self.new,image=self.photo4,anchor=NW,bd=0)
-		self.b3.pack()
-		self.b3.place(x=950,y=400)
-
 		#Create a label and entry box to get the phone no. of the user.
 		self.l4=tk.Label(self.new,text="Phone No.:",anchor=CENTER,font="times 14")
 		self.l4.pack()
@@ -173,12 +171,6 @@ class EasyPayApp(tk.Tk):
 		self.e4=tk.Entry(self.new,width=35)
 		self.e4.pack()
 		self.e4.place(x=645,y=300)
-
-		#Creating a label for phone picture.
-		self.photo5 = PhotoImage(file="phone.gif")
-		self.b4=tk.Label(self.new,image=self.photo5,anchor=NW,bd=0)
-		self.b4.pack()
-		self.b4.place(x=900,y=150)
 
 		#Create a label and entry box to get the username of the user.
 		self.l5=tk.Label(self.new,text="Username:",anchor=CENTER,font="times 14")
@@ -272,7 +264,6 @@ class EasyPayApp(tk.Tk):
 
 		#Creating new window
 		self.options=tk.Toplevel()
-		self.options.configure()
 
 		#Shape of the window.
 		self.options.geometry("1366x680")
@@ -285,7 +276,7 @@ class EasyPayApp(tk.Tk):
 		self.bgpic1=PhotoImage(file="backgrnd.gif")
 		self.background_label = tk.Label(self.options, image=self.bgpic1)
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
-		self.E.pack(expand=1)
+		self.E.pack()
 
 		#Create a button for mobile recharge with a picture on it which operates mobile recharge function when clicked on it.
 		self.photo6 = PhotoImage(file="mobile.gif")
@@ -313,7 +304,6 @@ class EasyPayApp(tk.Tk):
 
 		#Creating new window
 		self.add=tk.Toplevel()
-		self.add.configure()
 
 		#Shape of the window.
 		self.add.geometry("470x300")
@@ -326,7 +316,7 @@ class EasyPayApp(tk.Tk):
 		self.bgpic=PhotoImage(file="backgrnd.gif")
 		self.background_label = tk.Label(self.add, image=self.bgpic)
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
-		self.F.pack(expand=1)
+		self.F.pack()
 
 		#Creating a label for card details.
 		self.details=tk.Label(self.add,text="CARD DETAILS",anchor=CENTER,font="times 18")
@@ -386,7 +376,6 @@ class EasyPayApp(tk.Tk):
 
 		#Creating new window
 		self.about_us=tk.Toplevel()
-		self.about_us.configure()
 
 		#Shape of the window
 		self.about_us.geometry("860x525")
@@ -399,8 +388,7 @@ class EasyPayApp(tk.Tk):
 		self.bgpicabt=PhotoImage(file="aboutus.gif")
 		self.background_label = tk.Label(self.about_us, image=self.bgpicabt)
 		self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
-		self.G.pack(expand=1)
-
+		self.G.pack()
 
 	def on_submit_carddetails(self):
 		"""This function is executed when the submit button on the add card page is pressed.
@@ -427,24 +415,24 @@ class EasyPayApp(tk.Tk):
 		"""
 
 		# Import the necessary libraries.
-		
 		import pyautogui,time
+
 		# Open 'Google Chrome' after the command from the user.
 		pyautogui.press('win')
-		pyautogui.typewrite('Google Chrome',0.1)
-		pyautogui.typewrite(['enter'])
+		pyautogui.typewrite('Google Chrome',0.01)
+		pyautogui.press('enter')
 
 		# Give a delay for about 5 sec, to make the system open Google Chrome.
 		time.sleep(5)
 
 		# To maximize the new tab window which will be opened on the screen, after the delay.
 		pyautogui.hotkey('alt','space')
-		pyautogui.press(['x'])
+		pyautogui.press('x')
 
 		# Place the cursor into the URL bar to start typing the link.
 		pyautogui.click(151,51)
 		pyautogui.typewrite('https://www.airtel.in/prepaid-recharge?icid=prepaid_row_1_column_1')
-		pyautogui.typewrite(['enter'])
+		pyautogui.press('enter')
 
 		# Give a delay for about 10 seconds to open the mentioned webpage.
 		time.sleep(10)
@@ -454,11 +442,11 @@ class EasyPayApp(tk.Tk):
 
 		# Erase the already pre-taken number if any.
 		for i in range(10):
-			pyautogui.typewrite(['backspace'])
+			pyautogui.press('backspace')
 
 		# Type the 'Mobile number' of the user in the erased space,followed by required amount of delay.
 		numb1=self.ph(self.usernameinp)
-		pyautogui.typewrite(numb1,0.1)
+		pyautogui.typewrite(numb1,0.01)
 		time.sleep(10)
 
 		# Type the 'Amount of recharge' to be done, followed by required amount of delay.
@@ -466,8 +454,7 @@ class EasyPayApp(tk.Tk):
 		time.sleep(5)
 
 		# Press 'Enter' key to activate Recharge and proceed to payment, followed by required amount of delay.
-		pyautogui.keyDown('enter')
-		pyautogui.keyUp('enter')
+		pyautogui.press('enter')
 		time.sleep(20)
 
 		# First click on 'Debit/Credit Card' option to fill the card details
@@ -476,23 +463,23 @@ class EasyPayApp(tk.Tk):
 		# Function call to retrieve and type the card holder's name from the database.
 		chn1=self.c_h_n()
 		time.sleep(1)
-		pyautogui.click(350,338); pyautogui.typewrite(chn1,0.1)
+		pyautogui.click(350,338); pyautogui.typewrite(chn1,0.01)
 
 		# Function call to retrieve card number from the database.
 		cn1=self.c_n()
-		pyautogui.click(300,430); pyautogui.typewrite(cn1,0.1)
+		pyautogui.click(300,430); pyautogui.typewrite(cn1,0.01)
 		
 		# Function call to retrieve and type the month of expiry of the card from the database.
 		expm2=self.expm()
-		pyautogui.click(705,430); pyautogui.typewrite(expm2,0.1)
+		pyautogui.click(705,430); pyautogui.typewrite(expm2,0.01)
 
 		# Function call to retrieve and type the year of expiry of the card from the database.
 		expy2=self.expy()
-		pyautogui.click(750,430); pyautogui.typewrite(expy2,0.1)
+		pyautogui.click(750,430); pyautogui.typewrite(expy2,0.01)
 
 		# Function call to retrieve and type the CVV of the card from the database.
 		cvv2=self.c_v_v()
-		pyautogui.click(830,430); pyautogui.typewrite(cvv2,0.1)
+		pyautogui.click(830,430); pyautogui.typewrite(cvv2,0.01)
 
 		# Click on 'Continue to pay' option to receive an OTP to the associated number and to complete the payment.
 		pyautogui.click(1000,600)
@@ -507,7 +494,7 @@ class EasyPayApp(tk.Tk):
 		import pyautogui,time
 		# Open 'Google Chrome' after the command from the user.
 		pyautogui.press('win')
-		pyautogui.typewrite('Google Chrome',0.1)
+		pyautogui.typewrite('Google Chrome')
 		pyautogui.typewrite(['enter'])
 
 		# Give a delay for about 5 sec, to make the system open Google Chrome.
@@ -535,11 +522,11 @@ class EasyPayApp(tk.Tk):
 
 		# To perform a click on the first textbox on the screen, to enter the mobile number.
 		pyautogui.click(720,470)
-		pyautogui.typewrite('9945990000',0.1)
+		pyautogui.typewrite('9945990000',0.01)
 
 		# To perform a click on the second textbox on the screen, to enter the recharge amount.
 		pyautogui.click(618,592)
-		pyautogui.typewrite('3175',0.1)
+		pyautogui.typewrite('3175',0.01)
 
 		# Click on the 'Pay Now' option after a delay of 2 seconds.
 		time.sleep(2)
@@ -573,24 +560,24 @@ class EasyPayApp(tk.Tk):
 
 		# Function call to retrieve and type the card number from the database.
 		cn1=self.c_n()
-		pyautogui.typewrite(cn1,0.1)
+		pyautogui.typewrite(cn1,0.01)
 
 		# Function call to retrieve and type the card holder's name from the database.
 		chn1=self.c_h_n()
-		pyautogui.click(620,479); pyautogui.typewrite(chn1,0.1)
+		pyautogui.click(620,479); pyautogui.typewrite(chn1,0.01)
 
 		# Function call to retrieve and type the month of expiry of the card from the database.
 		expm2=self.expm()
-		pyautogui.click(552,512); pyautogui.typewrite(expm2,0.1)
+		pyautogui.click(552,512); pyautogui.typewrite(expm2,0.01)
 
 		# Function call to retrieve and type the year of expiry of the card from the database.
 		expy2=self.expy()
 		expy3="20"+expy2
-		pyautogui.click(606,513); pyautogui.typewrite(expy3,0.1)
+		pyautogui.click(606,513); pyautogui.typewrite(expy3,0.01)
 
 		# Function call to retrieve and type the CVV of the card from the database.
 		cvv2=self.c_v_v()
-		pyautogui.click(550,550); pyautogui.typewrite(cvv2,0.1)
+		pyautogui.click(550,550); pyautogui.typewrite(cvv2,0.01)
 
 		# Click on final 'Pay Now' option to proceed to enter the OTP received.
 		pyautogui.click(373,634)
@@ -702,5 +689,6 @@ class EasyPayApp(tk.Tk):
 		# Returning the cvv
 		return self.cvvn
 
+"""EasyPayApp class is called on an object 'app' and mainloop function is run on it"""
 app = EasyPayApp()
 app.mainloop()
