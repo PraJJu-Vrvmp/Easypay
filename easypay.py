@@ -3,8 +3,6 @@ Tkinter is used as a frontend module.
 Pyautogui is used for automation functions.
 PeeWee and model are used for using database"""
 import tkinter as tk
-from tkinter import filedialog
-import tkinter
 import tkinter.messagebox
 import os
 from tkinter import *
