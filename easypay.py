@@ -306,7 +306,7 @@ class EasyPayApp(tk.Tk):
 		self.add=tk.Toplevel()
 
 		#Shape of the window.
-		self.add.geometry("470x300")
+		self.add.geometry("470x300") 
 
 		#Title of the window.
 		self.add.title("ADD CARD")
