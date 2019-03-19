@@ -465,23 +465,23 @@ class EasyPayApp(tk.Tk):
 		# Function call to retrieve and type the card holder's name from the database.
 		chn1=self.c_h_n()
 		time.sleep(1)
-		pyautogui.click(350,338); pyautogui.typewrite(chn1,0.01)
+		pyautogui.click(350,338); pyautogui.typewrite(chn1,0.1)
 
 		# Function call to retrieve card number from the database.
 		cn1=self.c_n()
-		pyautogui.click(300,430); pyautogui.typewrite(cn1,0.01)
+		pyautogui.click(300,430); pyautogui.typewrite(cn1,0.1)
 		
 		# Function call to retrieve and type the month of expiry of the card from the database.
 		expm2=self.expm()
-		pyautogui.click(705,430); pyautogui.typewrite(expm2,0.01)
+		pyautogui.click(705,430); pyautogui.typewrite(expm2,0.1)
 
 		# Function call to retrieve and type the year of expiry of the card from the database.
 		expy2=self.expy()
-		pyautogui.click(750,430); pyautogui.typewrite(expy2,0.01)
+		pyautogui.click(750,430); pyautogui.typewrite(expy2,0.1)
 
 		# Function call to retrieve and type the CVV of the card from the database.
 		cvv2=self.c_v_v()
-		pyautogui.click(830,430); pyautogui.typewrite(cvv2,0.01)
+		pyautogui.click(830,430); pyautogui.typewrite(cvv2,0.1)
 
 		# Click on 'Continue to pay' option to receive an OTP to the associated number and to complete the payment.
 		pyautogui.click(1000,600)
@@ -496,7 +496,8 @@ class EasyPayApp(tk.Tk):
 		import pyautogui,time
 		# Open 'Google Chrome' after the command from the user.
 		pyautogui.press('win')
-		pyautogui.typewrite('Google Chrome')
+		time.sleep(2)
+		pyautogui.typewrite('Google Chrome',0.1)
 		pyautogui.typewrite(['enter'])
 
 		# Give a delay for about 5 sec, to make the system open Google Chrome.
@@ -516,7 +517,7 @@ class EasyPayApp(tk.Tk):
 
 		# Click on the Quick Recharge option on the screen, followed by a delay, to carry out the recharge.
 		pyautogui.click(1119,120)
-		time.sleep(2)
+		time.sleep(5)
 
 		# Perform scroll operation twice to view the textboxes available on the screen, to fill the details.
 		pyautogui.press(['down'])
@@ -524,62 +525,66 @@ class EasyPayApp(tk.Tk):
 
 		# To perform a click on the first textbox on the screen, to enter the mobile number.
 		pyautogui.click(720,470)
-		pyautogui.typewrite('9945990000',0.01)
+		pyautogui.typewrite('9945990000',0.1)
 
 		# To perform a click on the second textbox on the screen, to enter the recharge amount.
 		pyautogui.click(618,592)
-		pyautogui.typewrite('3175',0.01)
+		pyautogui.typewrite('3175',0.1)
 
 		# Click on the 'Pay Now' option after a delay of 2 seconds.
 		time.sleep(2)
 		pyautogui.click(665,682)
 
-		# Give a delay for about 10 seconds to load the type of payment page.
-		time.sleep(10)
+		# Give a delay for about 5 seconds to load the type of payment page.
+		time.sleep(5)
 
 		# To click on the 'Debit card' option followed by clicking on 'Pay Now'.
 		pyautogui.click(330,405)
 		pyautogui.click(1150,543)
 
 		# Give a delay of 10 seconds to load the next Payment page.
-		time.sleep(10)
+		time.sleep(15)
 
 		# Click on Debit card, followed by 'Select' option on the screen to select what type of debit card.
 		pyautogui.click(681,375)
+		time.sleep(2)
 		pyautogui.click(959,413)
 
 		# Click on 'Rupay Card' option from the drop down occured. 
 		pyautogui.click(864,579)
+		time.sleep(2)
 
 		# Click on 'Pay Now' option.
 		pyautogui.click(805,465)
 
-		# Give a delay for about 5 seconds to load the card details page.
-		time.sleep(5)
+		# Give a delay for about 15 seconds to load the card details page.
+		time.sleep(15)
 
 		# Click on the first textbox on the screen to enter the card number.  
 		pyautogui.click(620,445)
 
 		# Function call to retrieve and type the card number from the database.
 		cn1=self.c_n()
-		pyautogui.typewrite(cn1,0.01)
+		pyautogui.typewrite(cn1,0.1)
+		time.sleep(2)
 
 		# Function call to retrieve and type the card holder's name from the database.
 		chn1=self.c_h_n()
-		pyautogui.click(620,479); pyautogui.typewrite(chn1,0.01)
+		pyautogui.click(620,479); pyautogui.typewrite(chn1,0.1)
+		time.sleep(2)
 
 		# Function call to retrieve and type the month of expiry of the card from the database.
 		expm2=self.expm()
-		pyautogui.click(552,512); pyautogui.typewrite(expm2,0.01)
+		pyautogui.click(552,512); pyautogui.typewrite(expm2,0.1)
 
 		# Function call to retrieve and type the year of expiry of the card from the database.
 		expy2=self.expy()
 		expy3="20"+expy2
-		pyautogui.click(606,513); pyautogui.typewrite(expy3,0.01)
+		pyautogui.click(606,513); pyautogui.typewrite(expy3,0.1)
 
 		# Function call to retrieve and type the CVV of the card from the database.
 		cvv2=self.c_v_v()
-		pyautogui.click(550,550); pyautogui.typewrite(cvv2,0.01)
+		pyautogui.click(550,550); pyautogui.typewrite(cvv2,0.1)
 
 		# Click on final 'Pay Now' option to proceed to enter the OTP received.
 		pyautogui.click(373,634)
