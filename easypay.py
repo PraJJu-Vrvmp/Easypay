@@ -419,7 +419,8 @@ class EasyPayApp(tk.Tk):
 
 		# Open 'Google Chrome' after the command from the user.
 		pyautogui.press('win')
-		pyautogui.typewrite('Google Chrome',0.01)
+		time.sleep(2)
+		pyautogui.typewrite('Google Chrome',0.1)
 		pyautogui.press('enter')
 
 		# Give a delay for about 5 sec, to make the system open Google Chrome.
@@ -438,7 +439,7 @@ class EasyPayApp(tk.Tk):
 		time.sleep(10)
 
 		# Click on the coordinates of the last digit of the mobile number in the space provided to type the number. 
-		pyautogui.click(772,269)
+		pyautogui.click(675,390)
 
 		# Erase the already pre-taken number if any.
 		for i in range(10):
@@ -446,15 +447,16 @@ class EasyPayApp(tk.Tk):
 
 		# Type the 'Mobile number' of the user in the erased space,followed by required amount of delay.
 		numb1=self.ph(self.usernameinp)
-		pyautogui.typewrite(numb1,0.01)
-		time.sleep(10)
-
-		# Type the 'Amount of recharge' to be done, followed by required amount of delay.
-		pyautogui.typewrite('35')
+		pyautogui.typewrite(numb1,0.1)
 		time.sleep(5)
 
-		# Press 'Enter' key to activate Recharge and proceed to payment, followed by required amount of delay.
-		pyautogui.press('enter')
+		# Type the 'Amount of recharge' to be done, followed by required amount of delay.
+		pyautogui.click(850,390)
+		pyautogui.typewrite('35')
+		time.sleep(3)
+
+		# Click on the plan corresponding to the amount from below to activate Recharge and proceed to payment, followed by required amount of delay.
+		pyautogui.click(1210,585)
 		time.sleep(20)
 
 		# First click on 'Debit/Credit Card' option to fill the card details
