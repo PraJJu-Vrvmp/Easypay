@@ -461,7 +461,7 @@ class EasyPayApp(tk.Tk):
 		time.sleep(20)
 
 		# First click on 'Debit/Credit Card' option to fill the card details
-		pyautogui.click(100,400)
+		pyautogui.click(100,475)
 
 		# Function call to retrieve and type the card holder's name from the database.
 		chn1=self.c_h_n()
