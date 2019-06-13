@@ -429,6 +429,7 @@ class EasyPayApp(tk.Tk):
 		# To maximize the new tab window which will be opened on the screen, after the delay.
 		pyautogui.hotkey('alt','space')
 		pyautogui.press('x')
+		time.sleep(2)
 
 		# Place the cursor into the URL bar to start typing the link.
 		pyautogui.click(151,51)
@@ -529,7 +530,7 @@ class EasyPayApp(tk.Tk):
 
 		# To perform a click on the second textbox on the screen, to enter the recharge amount.
 		pyautogui.click(618,592)
-		pyautogui.typewrite('3175',0.1)
+		pyautogui.typewrite('6162',0.1)
 
 		# Click on the 'Pay Now' option after a delay of 2 seconds.
 		time.sleep(2)
