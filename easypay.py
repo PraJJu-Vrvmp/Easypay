@@ -530,9 +530,9 @@ class EasyPayApp(tk.Tk):
 
 		# To perform a click on the second textbox on the screen, to enter the recharge amount.
 		pyautogui.click(618,592)
-		pyautogui.typewrite('6162',0.1)
+		pyautogui.typewrite('6187',0.1)
 
-		# Click on the 'Pay Now' option after a delay of 2 seconds.
+		# Click on the 'Recharge Now' option after a delay of 2 seconds.
 		time.sleep(2)
 		pyautogui.click(665,682)
 
@@ -540,8 +540,9 @@ class EasyPayApp(tk.Tk):
 		time.sleep(5)
 
 		# To click on the 'Debit card' option followed by clicking on 'Pay Now'.
-		pyautogui.click(330,405)
-		pyautogui.click(1150,543)
+		pyautogui.click(150,465)
+		time.sleep(2)
+		pyautogui.click(1150,500)
 
 		# Give a delay of 10 seconds to load the next Payment page.
 		time.sleep(15)
@@ -552,7 +553,7 @@ class EasyPayApp(tk.Tk):
 		pyautogui.click(959,413)
 
 		# Click on 'Rupay Card' option from the drop down occured. 
-		pyautogui.click(864,579)
+		pyautogui.click(625,583)
 		time.sleep(2)
 
 		# Click on 'Pay Now' option.
