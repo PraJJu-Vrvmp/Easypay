@@ -457,11 +457,11 @@ class EasyPayApp(tk.Tk):
 		time.sleep(3)
 
 		# Click on the plan corresponding to the amount from below to activate Recharge and proceed to payment, followed by required amount of delay.
-		pyautogui.click(1210,585)
+		pyautogui.click(1210,565)
 		time.sleep(20)
 
 		# First click on 'Debit/Credit Card' option to fill the card details
-		pyautogui.click(100,475)
+		pyautogui.click(100,400)
 
 		# Function call to retrieve and type the card holder's name from the database.
 		chn1=self.c_h_n()
@@ -518,7 +518,7 @@ class EasyPayApp(tk.Tk):
 
 		# Click on the Quick Recharge option on the screen, followed by a delay, to carry out the recharge.
 		pyautogui.click(1119,120)
-		time.sleep(5)
+		time.sleep(10)
 
 		# Perform scroll operation twice to view the textboxes available on the screen, to fill the details.
 		pyautogui.press(['down'])
@@ -559,7 +559,7 @@ class EasyPayApp(tk.Tk):
 		pyautogui.click(805,465)
 
 		# Give a delay for about 15 seconds to load the card details page.
-		time.sleep(15)
+		time.sleep(20)
 
 		# Click on the first textbox on the screen to enter the card number.  
 		pyautogui.click(620,445)
